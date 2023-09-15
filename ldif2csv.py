@@ -1,5 +1,6 @@
 SEPARATOR = ';'
 JOINER = '|'
+QUOTECHAR = '"'
 
 import sys
 import os
