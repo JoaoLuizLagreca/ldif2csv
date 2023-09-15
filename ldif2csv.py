@@ -20,11 +20,11 @@ if os.path.isdir(args.INPUT):
     sys.stderr.write("The input specified is a directory")
     exit(123) # EISDIR
 
-ldif = os.open(args.INPUT, os.O_RDONLY)
+ldif = open(args.INPUT, mode='r')
 
 writer = csv.DictWriter(sys.stdout, args.COLUMN, delimiter=SEPARATOR, quotechar=QUOTECHAR, quoting=csv.QUOTE_ALL)
 writer.writeheader()
 
 
 
-os.close(ldif)
+close(ldif)
