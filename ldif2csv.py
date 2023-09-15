@@ -21,10 +21,23 @@ if os.path.isdir(args.INPUT):
     exit(123) # EISDIR
 
 ldif = open(args.INPUT, mode='r')
+def endAll(code):
+    ldif.close()
+    exit(code)
 
 writer = csv.DictWriter(sys.stdout, args.COLUMN, delimiter=SEPARATOR, quotechar=QUOTECHAR, quoting=csv.QUOTE_ALL)
 writer.writeheader()
 
+data={}
+c=''
+state=0
+while True:
+    c=ldif.next()
 
+    if state==0:
+        continue
+    else:
+        sys.stderr("Unknown state "+state)
+        endAll(-1)
 
-close(ldif)
+endAll(0)
