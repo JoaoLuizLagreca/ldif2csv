@@ -15,3 +15,8 @@ if os.path.isdir(args.INPUT):
     sys.stderr.write("The input specified is a directory")
     exit(123) # EISDIR
 
+ldif = os.open(args.INPUT, os.O_RDONLY)
+
+
+
+os.close(ldif)
