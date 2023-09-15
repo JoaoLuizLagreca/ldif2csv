@@ -10,8 +10,8 @@ args = prs.parse_args()
 
 if not os.path.exists(args.INPUT):
     sys.stderr.write("Input file doesn't exists")
-    exit(129)
+    exit(129) # ENOENT
 if os.path.isdir(args.INPUT):
     sys.stderr.write("The input specified is a directory")
-    exit(123)
+    exit(123) # EISDIR
 
