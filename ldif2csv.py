@@ -1,7 +1,11 @@
+SEPARATOR = ';'
+JOINER = '|'
+
 import sys
 import os
 import fileinput
 import argparse
+import csv
 
 prs = argparse.ArgumentParser(prog='ldif2csv')
 prs.add_argument('INPUT', help='LDIF input file')
@@ -16,6 +20,9 @@ if os.path.isdir(args.INPUT):
     exit(123) # EISDIR
 
 ldif = os.open(args.INPUT, os.O_RDONLY)
+
+writer = csv.DictWriter(sys.stdout, args.COLUMN, delimiter=SEPARATOR, quotechar=QUOTECHAR, quoting=csv.QUOTE_ALL)
+writer.writeheader()
 
 
 
