@@ -38,13 +38,15 @@ def writeValue(column, value):
             values[column]=value
 
 def writeData():
-    data.insert(-1, values.copy())
+    data.insert(0, values.copy())
     values.clear()
+    if len(data)>=DATA_LIMIT:
+        writeCSV()
 
 def writeCSV():
-    writer.writerows(data)
-    for i in data:
-        data.pop()
+    while len(data)>0:
+        writer.writerow(data.pop())
+
 
 writer = csv.DictWriter(sys.stdout, args.COLUMN, delimiter=SEPARATOR, quotechar=QUOTECHAR, quoting=csv.QUOTE_ALL)
 writer.writeheader()
