@@ -30,12 +30,12 @@ if os.path.isdir(args.INPUT):
     exit(123) # EISDIR
 
 ldif = open(args.INPUT, mode='rb')
-maxindex = os.path.getsize(args.INPUT)
+maxindex = float(os.path.getsize(args.INPUT))
 values={}
 data=[]
 
 def printCompletion():
-    completion = (ldif.tell()/maxindex)*100.
+    completion = round(ldif.tell()/maxindex, 2)*100.
     sys.stderr.write(str(completion)+"% converted...\n")
 def endAll(code):
     ldif.close()
