@@ -33,7 +33,7 @@ def writeValue(column, value):
     if column in args.COLUMN:
         if column in values:
             v=values[column]
-            values[column]=(v+"|"+value)
+            values[column]=(v+JOINER+value)
         else:
             values[column]=value
 
