@@ -53,66 +53,6 @@ state=0
 column = StringIO()
 value = StringIO()
 while True:
-    c=ldif.read(1)
-    #sys.stdout.write(c)
-    if(c==""):
-        break
-
-    if state==0:
-        column.truncate(0)
-        value.truncate(0)
-        if c in ws:
-            state=5
-            continue
-        if isDigit(c):
-            state=1
-            ldif.seek(-1, 1)
-            continue
-    elif state==1:
-        if c == ':':
-            state=2
-            continue
-        if isDigit(c):
-            column.write(unicode(c, 'unicode-escape'))
-            continue
-    elif state==2:
-        if c == ' ':
-            state=3
-            continue
-        if isDigit(c):
-            state=4
-            ldif.seek(-1, 1)
-            continue
-    elif state==3:
-        if isDigit(c):
-            state=4
-            ldif.seek(-1, 1)
-            continue
-    elif state==4:
-        if c in ws:
-            writeValue(column.getvalue(), value.getvalue())
-            state=0
-            continue
-        if isDigit(c):
-            value.write(unicode(c, 'unicode-escape'))
-            continue
-    elif state==5:
-        print("a")
-        if c in ws:
-            print("b1")
-            writeData()
-            state=0
-            continue
-        if isDigit(c):
-            print("b2")
-            state=1
-            ldif.seek(-1, 1)
-            continue
-    else:
-        sys.stderr.write("Unknown state "+str(state))
-        endAll(-1)
-
-    sys.stderr.write("Unknown lexical error, state "+str(state)+" char "+c)
-    endAll(-1)
+    print "Unimplemented"
 
 endAll(0)
