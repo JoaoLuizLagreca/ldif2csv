@@ -48,9 +48,18 @@ def writeData():
         writeCSV()
 
 def writeCSV():
-    while len(data)>0:
-        writer.writerow(data.pop())
-    printCompletion()
+    try:
+        while len(data)>0:
+            writer.writerow(data.pop())
+    except IOError:
+        raise
+        endAll(132)
+    except:
+        raise
+        endAll(-1)
+    finally:
+        printCompletion()
+
 
 
 writer = csv.DictWriter(sys.stdout, args.COLUMN, delimiter=SEPARATOR, quotechar=QUOTECHAR, quoting=csv.QUOTE_ALL)
