@@ -53,7 +53,7 @@ def writeCSV():
             writer.writerow(data.pop())
     except IOError:
         raise
-        endAll(132)
+        endAll(132) # ENOMEM
     except:
         raise
         endAll(-1)
