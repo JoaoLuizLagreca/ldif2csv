@@ -30,12 +30,13 @@ def endAll(code):
     exit(code)
 
 def writeValue(column, value):
-    #if column in args.COLUMN:
-    if column in values:
-        v=values[column]
-        values[column]=(v+"|"+value)
-    else:
-        values[column]=value
+    if column in args.COLUMN:
+        if column in values:
+            v=values[column]
+            values[column]=(v+"|"+value)
+        else:
+            values[column]=value
+
 def writeData():
     print("c")
 
