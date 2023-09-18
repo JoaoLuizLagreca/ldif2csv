@@ -27,7 +27,7 @@ values={}
 data=[]
 
 def printCompletion():
-    completion = (ldif.tell()/maxindex)*100
+    completion = (ldif.tell()/maxindex)*100.
     sys.stderr.write(str(completion)+"% converted...\n")
 def endAll(code):
     ldif.close()
