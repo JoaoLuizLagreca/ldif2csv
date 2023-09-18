@@ -41,6 +41,11 @@ def writeData():
     data.insert(-1, values.copy())
     values.clear()
 
+def writeCSV():
+    writer.writerows(data)
+    for i in data:
+        data.pop()
+
 writer = csv.DictWriter(sys.stdout, args.COLUMN, delimiter=SEPARATOR, quotechar=QUOTECHAR, quoting=csv.QUOTE_ALL)
 writer.writeheader()
 
@@ -60,6 +65,6 @@ while True:
     lineData[1]=lineData[1].replace('\n', '')
     writeValue(lineData[0], lineData[1])
 
-print(data)
+writeCSV()
 
 endAll(0)
