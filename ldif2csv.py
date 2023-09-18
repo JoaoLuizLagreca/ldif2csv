@@ -1,6 +1,7 @@
 SEPARATOR = ';'
 JOINER = '|'
 QUOTECHAR = '"'
+DATA_LIMIT=524288
 
 import sys
 import os
