@@ -62,7 +62,7 @@ def writeCSV():
 
 
 
-writer = csv.DictWriter(sys.stdout, args.COLUMN, delimiter=SEPARATOR, quotechar=QUOTECHAR, quoting=csv.QUOTE_ALL)
+writer = csv.DictWriter(sys.stdout, args.COLUMN, delimiter=SEPARATOR, quotechar=QUOTECHAR, quoting=csv.QUOTE_ALL, lineterminator = '\n')
 writer.writeheader()
 printCompletion()
 
