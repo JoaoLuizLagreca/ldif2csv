@@ -9,7 +9,15 @@ import argparse
 import csv
 
 
-prs = argparse.ArgumentParser(prog='ldif2csv')
+prs = argparse.ArgumentParser(prog='ldif2csv', formatter_class=argparse.RawTextHelpFormatter, description="""
+Convert big LDIF files to CSV with the specified columns
+The CSV format is thrown to STDOUT, columns are case-sensitive
+
+Example usage:
+python ldif2csv.py LDIF_FILE.ldif COLUMN1 COLUMN2 COLUMN3 > CSV_FILE.csv
+
+Made for Python 2.7
+""")
 prs.add_argument('INPUT', help='LDIF input file')
 prs.add_argument('COLUMN', help='Columns to parse to CSV file', nargs='+')
 args = prs.parse_args()
