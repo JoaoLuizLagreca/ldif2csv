@@ -55,7 +55,7 @@ while True:
     lineData=line.split(": ", 1)
     if len(lineData)<2:
         writeData()
-        continue # Registrar dados
+        continue
 
     lineData[1]=lineData[1].replace('\n', '')
     writeValue(lineData[0], lineData[1])
