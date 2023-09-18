@@ -21,9 +21,14 @@ if os.path.isdir(args.INPUT):
     sys.stderr.write("The input specified is a directory")
     exit(123) # EISDIR
 
-ldif = open(args.INPUT, mode='r')
+ldif = open(args.INPUT, mode='rb')
+maxindex = os.path.getsize(args.INPUT)
 values={}
 data=[]
+
+def printCompletion():
+    completion = (ldif.tell()/maxindex)*100
+    sys.stderr.write(str(completion)+"% converted...\n")
 def endAll(code):
     ldif.close()
     exit(code)
@@ -45,11 +50,12 @@ def writeData():
 def writeCSV():
     while len(data)>0:
         writer.writerow(data.pop())
+    printCompletion()
 
 
 writer = csv.DictWriter(sys.stdout, args.COLUMN, delimiter=SEPARATOR, quotechar=QUOTECHAR, quoting=csv.QUOTE_ALL)
 writer.writeheader()
-
+printCompletion()
 
 line=""
 while True:
@@ -68,4 +74,5 @@ while True:
 
 writeCSV()
 
+sys.stderr.write("Conversion completed!\n")
 endAll(0)
