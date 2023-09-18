@@ -5,10 +5,8 @@ DATA_LIMIT=524288
 
 import sys
 import os
-import fileinput
 import argparse
 import csv
-from io import StringIO
 
 
 prs = argparse.ArgumentParser(prog='ldif2csv')
