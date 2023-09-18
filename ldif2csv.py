@@ -24,7 +24,7 @@ if os.path.isdir(args.INPUT):
 
 ldif = open(args.INPUT, mode='r')
 values={}
-data={}
+data=[] #TODO: Limite de memória
 def endAll(code):
     ldif.close()
     exit(code)
@@ -38,7 +38,8 @@ def writeValue(column, value):
             values[column]=value
 
 def writeData():
-    print("c")
+    data.insert(-1, values.copy())
+    values.clear()
 
 writer = csv.DictWriter(sys.stdout, args.COLUMN, delimiter=SEPARATOR, quotechar=QUOTECHAR, quoting=csv.QUOTE_ALL)
 writer.writeheader()
@@ -53,9 +54,12 @@ while True:
 
     lineData=line.split(": ", 1)
     if len(lineData)<2:
+        writeData()
         continue # Registrar dados
 
     lineData[1]=lineData[1].replace('\n', '')
-    print(lineData)
+    writeValue(lineData[0], lineData[1])
+
+print(data)
 
 endAll(0)
