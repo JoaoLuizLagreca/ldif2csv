@@ -9,11 +9,6 @@ import argparse
 import csv
 from io import StringIO
 
-def isDigit(c):
-    #return c.isdigit() or c.isalpha()
-    return True #TEMPORARIO
-ws = {'\n'}
-
 
 prs = argparse.ArgumentParser(prog='ldif2csv')
 prs.add_argument('INPUT', help='LDIF input file')
@@ -48,11 +43,18 @@ writer = csv.DictWriter(sys.stdout, args.COLUMN, delimiter=SEPARATOR, quotechar=
 writer.writeheader()
 
 
-c=''
-state=0
-column = StringIO()
-value = StringIO()
+line=""
 while True:
-    print "Unimplemented"
+    try:
+        line=ldif.next()
+    except StopIteration:
+        break
+
+    lineData=line.split(": ", 1)
+    if len(lineData)<2:
+        continue # Registrar dados
+
+    lineData[1]=lineData[1].replace('\n', '')
+    print(lineData)
 
 endAll(0)
