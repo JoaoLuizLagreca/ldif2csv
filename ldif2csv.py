@@ -24,7 +24,7 @@ if os.path.isdir(args.INPUT):
 
 ldif = open(args.INPUT, mode='r')
 values={}
-data=[] #TODO: Limite de memória
+data=[] #TODO: Limite de memoria
 def endAll(code):
     ldif.close()
     exit(code)
